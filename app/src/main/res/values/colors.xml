@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#685094</color>
+    <color name="colorPrimaryDark">#4C3772</color>
+    <color name="colorAccent">#8C71BD</color>
+    <color name="white">#fff</color>
+    <color name="totalAppointmentColor">#7986cb</color>
+    <color name="nextAppointment">#4db6ac</color>
+    <color name="pendingAppointment">#81c784</color>
+</resources>
