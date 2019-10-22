@@ -74,6 +74,8 @@ public class DoctorSearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_search);
 
+        getSupportActionBar().setElevation(0);
+
         appData = new AppData(this);
         name = findViewById(R.id.doctorNameET);
         hospitalName = findViewById(R.id.presentHospitalET);

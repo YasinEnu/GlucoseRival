@@ -91,7 +91,7 @@ public class PendingListAdapter extends RecyclerView.Adapter<PendingListAdapter.
     void showConfirmDialog(final String patientId, final String status, final int position){
         AlertDialog.Builder alertDialog=new AlertDialog.Builder(context);
         alertDialog.setTitle("Confirm");
-        alertDialog.setMessage("You want to "+ getUserUnderstandableStatus(status)+", are you sure.");
+        alertDialog.setMessage("You want to "+ getUserUnderstandableStatus(status)+", are you sure?");
         alertDialog.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
