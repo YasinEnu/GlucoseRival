@@ -23,6 +23,7 @@ public class AppData {
     private static final String KEY_IS_MOBILE_VERIFIED = "isMobileVerified";
     private static final String KEY_TOTAL_PAID = "TotalPay";
     private static final String KEY_TOTAL_DUE = "TotalDue";
+    private static final String KEY_PROFILE_IMAGE = "profileImage";
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
@@ -154,6 +155,17 @@ public class AppData {
         editor.putString(KEY_USER_DOB, dateOfBirth);
         editor.commit();
         Log.d(TAG, "User dateOfBirth :" + dateOfBirth);
+    }
+
+    public String getProfileImage() {
+        return pref.getString(KEY_PROFILE_IMAGE, "null");
+    }
+
+    public void setPRofileImage(String uriString) {
+
+        editor.putString(KEY_PROFILE_IMAGE, uriString);
+        editor.commit();
+        Log.d(TAG, "Profile_Image :" + uriString);
     }
 
 

@@ -1,8 +1,17 @@
 package com.example.glucoserival.activity;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,12 +41,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UpdateProfile extends AppCompatActivity {
 
+    private static final int CODE_GALLERY = 100;
     private EditText name,email,address,edu,hospita,post,chamber,chamberAddress,appoinmentMobile,chamberDays;
     private TextView dateOfBirth;
     private Spinner category;
@@ -48,12 +59,14 @@ public class UpdateProfile extends AppCompatActivity {
     private ArrayList<Category> doctorCatList=new ArrayList<>();
     private ArrayAdapter<String> categoryAdapter;
     private AppData appData;
+    private CircleImageView profileImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
 
+        profileImage=findViewById(R.id.profile_image);
         appData=new AppData(this);
         name=findViewById(R.id.nameET);
         email=findViewById(R.id.emailET);
@@ -124,6 +137,25 @@ public class UpdateProfile extends AppCompatActivity {
             ((LinearLayout)findViewById(R.id.doctorsPanel)).setVisibility(View.VISIBLE);
             getDocCat();
         }
+        if (appData.getProfileImage()!=null && !appData.getProfileImage().isEmpty()&&!appData.getProfileImage().equals("null")){
+            profileImage.setImageBitmap(getPicture(Uri.parse(appData.getProfileImage())));
+        }
+        profileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ContextCompat.checkSelfPermission(UpdateProfile.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    // Permission is not granted
+                    ActivityCompat.requestPermissions(UpdateProfile.this,
+                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                            1);
+                }else {
+                    Intent intent = new Intent(Intent.ACTION_PICK);
+                    intent.setType("image/*");
+                    startActivityForResult(intent, CODE_GALLERY);
+                }
+            }
+        });
     }
 
     private void setUserData(String userType, String userName, String userDOB, String userAddress,
@@ -259,5 +291,39 @@ public class UpdateProfile extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && requestCode == CODE_GALLERY) {
+            appData.setPRofileImage(data.getDataString());
+            profileImage.setImageBitmap(getPicture(data.getData()));
+        }
+    }
+
+    public Bitmap getPicture(Uri selectedImage) {
+        String[] filePathColumn = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+        cursor.moveToFirst();
+        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+        String picturePath = cursor.getString(columnIndex);
+        cursor.close();
+        return BitmapFactory.decodeFile(picturePath);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    profileImage.callOnClick();
+
+                } else {
+                    Toast.makeText(UpdateProfile.this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+        }
     }
 }

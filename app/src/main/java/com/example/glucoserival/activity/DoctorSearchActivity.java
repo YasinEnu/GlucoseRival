@@ -50,6 +50,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,7 +65,7 @@ public class DoctorSearchActivity extends AppCompatActivity {
     private ListView doctorList;
     private EditText name, hospitalName;
     private TextView docNameFromServer, hospitalNameFromServer, docPhoneNumber;
-    private Button searchBtn;
+    private FancyButton searchBtn;
     private Spinner docCategory;
     private CustomAdapter doctorAdapter;
     private AppData appData;
@@ -73,8 +74,6 @@ public class DoctorSearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_search);
-
-        getSupportActionBar().setElevation(0);
 
         appData = new AppData(this);
         name = findViewById(R.id.doctorNameET);
