@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#e8eaf6"
+    android:orientation="vertical"
     tools:context=".activity.home.PatientFragment">
 
     <LinearLayout
@@ -133,75 +134,22 @@
     </LinearLayout>
 
 
-    <!--<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--android:id="@+id/preDefinedDataTL"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_margin="10dp"-->
-        <!--android:background="@drawable/dashboard_appointment_section_back"-->
-        <!--android:padding="10dp"-->
-        <!--android:visibility="visible">-->
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?actionBarSize"
+        app:tabGravity="fill"
+        app:tabTextColor="@color/colorPrimary"
+        app:tabSelectedTextColor="@color/white"
+        app:tabIndicatorHeight="4dp"
+        app:tabBackground="@color/colorPrimaryDark"
+        app:tabMode="fixed">
+    </android.support.design.widget.TabLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
 
-        <!--<TableRow>-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/totalAppointmentString"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_weight="1"-->
-                <!--android:width="0dp"-->
-                <!--android:gravity="center"-->
-                <!--android:padding="5dp"-->
-                <!--android:textStyle="bold"-->
-                <!--android:textSize="18sp"-->
-                <!--android:background="@drawable/border_available"-->
-                <!--android:text="Total Appointment" />-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/nextAppointmentDateString"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_weight="1"-->
-                <!--android:width="0dp"-->
-                <!--android:gravity="center"-->
-                <!--android:padding="5dp"-->
-                <!--android:textSize="18sp"-->
-                <!--android:background="@drawable/border_available"-->
-                <!--android:text="Next Appointment"-->
-                <!--android:textStyle="bold" />-->
-        <!--</TableRow>-->
-
-        <!--<TableRow>-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/totalAppointmentTV"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_weight="1"-->
-                <!--android:width="0dp"-->
-                <!--android:gravity="center"-->
-                <!--android:padding="5dp"-->
-                <!--android:textSize="17sp"-->
-                <!--android:textStyle="bold"-->
-                <!--android:background="@drawable/border_available"-->
-                <!--android:hint="0000" />-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/nextAppointmentDateTV"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_weight="1"-->
-                <!--android:width="0dp"-->
-                <!--android:gravity="center"-->
-                <!--android:padding="5dp"-->
-                <!--android:textSize="17sp"-->
-                <!--android:background="@drawable/border_available"-->
-                <!--android:hint="0000"-->
-                <!--android:textStyle="bold" />-->
-        <!--</TableRow>-->
-
-
-
-    <!--</TableLayout>-->
-
-</FrameLayout>
+</LinearLayout>

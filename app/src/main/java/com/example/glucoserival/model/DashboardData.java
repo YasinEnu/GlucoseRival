@@ -3,11 +3,11 @@ package com.example.glucoserival.model;
 
 import com.google.gson.annotations.SerializedName;
 
-@SuppressWarnings("unused")
-public class DashboardData {
+import java.io.Serializable;
 
-    @SerializedName("todays_appointment")
-    private Long todaysAppointment;
+@SuppressWarnings("unused")
+public class DashboardData implements Serializable {
+
     @SerializedName("total_accepted_appointment")
     private Long totalAcceptedAppointment;
     @SerializedName("total_appointment")
@@ -18,14 +18,6 @@ public class DashboardData {
     private Long totalPendingAppointment;
     @SerializedName("total_rejected_appointment")
     private Long totalRejectedAppointment;
-
-    public Long getTodaysAppointment() {
-        return todaysAppointment;
-    }
-
-    public void setTodaysAppointment(Long todaysAppointment) {
-        this.todaysAppointment = todaysAppointment;
-    }
 
     public Long getTotalAcceptedAppointment() {
         return totalAcceptedAppointment;

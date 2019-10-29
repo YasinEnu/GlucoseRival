@@ -1,50 +1,53 @@
 
 package com.example.glucoserival.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@SuppressWarnings("unused")
-public class UserInfo {
+import java.io.Serializable;
 
-    @SerializedName("age")
-    private Long mAge;
+@SuppressWarnings("unused")
+public class UserInfo implements Serializable {
+
+    @Expose
+    private Long age;
     @SerializedName("date_of_birth")
-    private String mDateOfBirth;
-    @SerializedName("mobile")
-    private String mMobile;
-    @SerializedName("name")
-    private String mName;
+    private String dateOfBirth;
+    @Expose
+    private String mobile;
+    @Expose
+    private String name;
 
     public Long getAge() {
-        return mAge;
+        return age;
     }
 
     public void setAge(Long age) {
-        mAge = age;
+        this.age = age;
     }
 
     public String getDateOfBirth() {
-        return mDateOfBirth;
+        return dateOfBirth;
     }
 
     public void setDateOfBirth(String dateOfBirth) {
-        mDateOfBirth = dateOfBirth;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getMobile() {
-        return mMobile;
+        return mobile;
     }
 
     public void setMobile(String mobile) {
-        mMobile = mobile;
+        this.mobile = mobile;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 
 }

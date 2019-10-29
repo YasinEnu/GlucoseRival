@@ -4,7 +4,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +25,8 @@ import com.example.glucoserival.network.MyNetwork;
 import com.google.gson.JsonParseException;
 
 import java.text.BreakIterator;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,6 +37,13 @@ public class PatientFragment extends Fragment {
 
     private TextView totalAppointMentTV,nextAppointMent;
     private TextView pendingAppointment;
+    private TabAdapter adapter;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private PatientDashboard patientDashboard;
+    private AcceptedListFragment acceptedListFragment;
+    private PendingListFragment pendingListFragment;
+    private CompleteListFragment completeListFragment;
 
     public PatientFragment() {
         // Required empty public constructor
@@ -41,6 +55,7 @@ public class PatientFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         appData=new AppData(getContext());
+        patientDashboard=new PatientDashboard();
     }
 
     @Override
@@ -52,6 +67,13 @@ public class PatientFragment extends Fragment {
         nextAppointMent=view.findViewById(R.id.nextAppointmentDate);
         pendingAppointment=view.findViewById(R.id.totalPending);
         getPatientDashboardData(appData.getUserID());
+
+
+        viewPager = (ViewPager) view.findViewById(R.id.viewPager);
+        tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
+        adapter = new TabAdapter(getChildFragmentManager());
+
+
         return view;
     }
 
@@ -70,13 +92,21 @@ public class PatientFragment extends Fragment {
                 if (response.isSuccessful()) {
 
                     try {
-                        PatientDashboard patientDashboard = response.body();
+                        patientDashboard = response.body();
                         if (patientDashboard.getStatus().equals("success")) {
 
                             totalAppointMentTV.setText(String.valueOf(patientDashboard.getDashboardData().getTotalAppointment()));
-                            nextAppointMent.setText(patientDashboard.getNext_appointment_date());
+                            nextAppointMent.setText(patientDashboard.getNextAppointmentDate());
                             pendingAppointment.setText(String.valueOf(patientDashboard.getDashboardData().getTotalPendingAppointment()));
                             appData.setUserDOB(patientDashboard.getUserInfo().getDateOfBirth());
+                            acceptedListFragment=AcceptedListFragment.newInstance(patientDashboard);
+                            completeListFragment=CompleteListFragment.newInstance(patientDashboard);
+                            pendingListFragment=PendingListFragment.newInstance(patientDashboard);
+                            adapter.addFragment(acceptedListFragment, "Accept");
+                            adapter.addFragment(completeListFragment, "Complete");
+                            adapter.addFragment(pendingListFragment, "Pending");
+                            viewPager.setAdapter(adapter);
+                            tabLayout.setupWithViewPager(viewPager);
                         } else {
                             Toast.makeText(getContext(), "No Data Found!!", Toast.LENGTH_SHORT).show();
                         }
@@ -102,6 +132,32 @@ public class PatientFragment extends Fragment {
         });
 
 
+    }
+
+
+    public class TabAdapter extends FragmentStatePagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+        TabAdapter(FragmentManager fm) {
+            super(fm);
+        }
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
     }
 
 }

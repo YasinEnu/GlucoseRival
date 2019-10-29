@@ -1,49 +1,96 @@
 
 package com.example.glucoserival.model;
 
+import java.io.Serializable;
+import java.util.List;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @SuppressWarnings("unused")
-public class PatientDashboard {
+public class PatientDashboard implements Serializable {
 
+    public PatientDashboard() {
+    }
+
+    @SerializedName("accepted_appointment")
+    private List<AcceptedAppointment> acceptedAppointment;
+    @SerializedName("completed_appointment")
+    private List<AcceptedAppointment> completedAppointment;
     @SerializedName("dashboard_data")
-    private DashboardData mDashboardData;
+    private DashboardData dashboardData;
     @SerializedName("next_appointment_date")
-    private String next_appointment_date;
-    @SerializedName("status")
-    private String mStatus;
+    private String nextAppointmentDate;
+    @SerializedName("pending_appointment")
+    private List<PendingAppointment> pendingAppointment;
+    @Expose
+    private String status;
+    @SerializedName("todays_appointment")
+    private List<Object> todaysAppointment;
     @SerializedName("user_info")
-    private UserInfo mUserInfo;
+    private UserInfo userInfo;
+
+    public List<AcceptedAppointment> getAcceptedAppointment() {
+        return acceptedAppointment;
+    }
+
+    public void setAcceptedAppointment(List<AcceptedAppointment> acceptedAppointment) {
+        this.acceptedAppointment = acceptedAppointment;
+    }
+
+    public List<AcceptedAppointment> getCompletedAppointment() {
+        return completedAppointment;
+    }
+
+    public void setCompletedAppointment(List<AcceptedAppointment> completedAppointment) {
+        this.completedAppointment = completedAppointment;
+    }
 
     public DashboardData getDashboardData() {
-        return mDashboardData;
+        return dashboardData;
     }
 
     public void setDashboardData(DashboardData dashboardData) {
-        mDashboardData = dashboardData;
+        this.dashboardData = dashboardData;
+    }
+
+    public String getNextAppointmentDate() {
+        return nextAppointmentDate;
+    }
+
+    public void setNextAppointmentDate(String nextAppointmentDate) {
+        this.nextAppointmentDate = nextAppointmentDate;
+    }
+
+    public List<PendingAppointment> getPendingAppointment() {
+        return pendingAppointment;
+    }
+
+    public void setPendingAppointment(List<PendingAppointment> pendingAppointment) {
+        this.pendingAppointment = pendingAppointment;
     }
 
     public String getStatus() {
-        return mStatus;
+        return status;
     }
 
     public void setStatus(String status) {
-        mStatus = status;
+        this.status = status;
+    }
+
+    public List<Object> getTodaysAppointment() {
+        return todaysAppointment;
+    }
+
+    public void setTodaysAppointment(List<Object> todaysAppointment) {
+        this.todaysAppointment = todaysAppointment;
     }
 
     public UserInfo getUserInfo() {
-        return mUserInfo;
+        return userInfo;
     }
 
     public void setUserInfo(UserInfo userInfo) {
-        mUserInfo = userInfo;
+        this.userInfo = userInfo;
     }
 
-    public String getNext_appointment_date() {
-        return next_appointment_date;
-    }
-
-    public void setNext_appointment_date(String next_appointment_date) {
-        this.next_appointment_date = next_appointment_date;
-    }
 }
