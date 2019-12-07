@@ -7,10 +7,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
-
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,10 +14,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.DoctorSearchActivity"></activity>
-        <activity android:name=".activity.UpdateProfile" />
-        <activity android:name=".activity.home.MainActivity" />
-        <activity android:name=".activity.login.LoginActivity">
+        <activity android:name=".activity.AppointmentHomeActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.AddSuggestionActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.AppointmentListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.HistoryMapActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.TrackGlucoseActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.InputGlucoseActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.DoctorSearchActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.UpdateProfile"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.home.MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.login.LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

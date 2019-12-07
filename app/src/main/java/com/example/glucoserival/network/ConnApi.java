@@ -1,12 +1,19 @@
 package com.example.glucoserival.network;
 
+import com.example.glucoserival.model.AddGlucose;
 import com.example.glucoserival.model.ApplyAppointmentResponse;
 import com.example.glucoserival.model.AppointmentStatusModel;
 import com.example.glucoserival.model.DoctorCategory;
 import com.example.glucoserival.model.DoctorDashboardData;
 import com.example.glucoserival.model.DoctorList;
+import com.example.glucoserival.model.GlucoseList;
+import com.example.glucoserival.model.MedicineModel;
 import com.example.glucoserival.model.PatientDashboard;
+import com.example.glucoserival.model.SuggestionModel;
+import com.example.glucoserival.model.SuggestionResponse;
 import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -58,6 +65,41 @@ public interface ConnApi {
     Call<ApplyAppointmentResponse> applyForDocAppointment(@Field("user_id") String userId,
                                                           @Field("doctor_id") String doctorId,
                                                           @Field("date") String appointmentDate);
+
+    @FormUrlEncoded
+    @POST("login/add_glucose_level")
+    Call<AddGlucose> submitGlucoseData(@Field("user_id") String userId,
+                                       @Field("value_of_glucose") String glucoseValue,
+                                       @Field("date") String date);
+
+    @FormUrlEncoded
+    @POST("login/get_glucose_level_list")
+    Call<GlucoseList> getGlucoseList(@Field("user_id") String userId);
+
+    @FormUrlEncoded
+    @POST("login/add_prescription")
+    Call<JsonObject> addPrescription(@Field("user_id") String userId,
+                                      @Field("appointment_id") String appointment_id,
+                                      @Field("medicine_name") String medicine_name,
+                                      @Field("before_or_after_eat") String before_or_after_eat,
+                                      @Field("morning") String morning,
+                                      @Field("noon") String noon,
+                                      @Field("night") String night,
+                                      @Field("how_many_days") String how_many_days);
+
+    @FormUrlEncoded
+    @POST("login/get_prescription")
+    Call<MedicineModel> getPrescription(@Field("user_id") String userId,
+                                        @Field("appointment_id") String appointment_id);
+
+    @FormUrlEncoded
+    @POST("login/get_suggestion")
+    Call<SuggestionModel> get_suggestion(@Field("appointment_id") String appointment_id);
+
+    @FormUrlEncoded
+    @POST("login/add_suggestion")
+    Call<SuggestionResponse> add_suggestion(@Field("appointment_id") String appointment_id,
+                                            @Field("suggestion") String suggestion);
 
 
 //    @Multipart

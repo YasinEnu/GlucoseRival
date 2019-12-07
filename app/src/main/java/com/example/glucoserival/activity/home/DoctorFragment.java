@@ -83,19 +83,6 @@ public class DoctorFragment extends Fragment {
                             totalCompleteAppointment.setText(String.valueOf(doctorDashboardData.getDashboardData().getTotalCompletedAppointment()));
                             totalPendingAppointment.setText(String.valueOf(doctorDashboardData.getDashboardData().getTotalPendingAppointment()));
                             ArrayList<PendingAppointmentList> appointmentArrayLists=(ArrayList<PendingAppointmentList>) doctorDashboardData.getPendingAppointmentList();
-                            PendingAppointmentList pendingAppointmentList=appointmentArrayLists.get(0);
-                            appointmentArrayLists.add(pendingAppointmentList);
-                            appointmentArrayLists.add(pendingAppointmentList);
-                            appointmentArrayLists.add(pendingAppointmentList);
-                            appointmentArrayLists.add(pendingAppointmentList);
-                            appointmentArrayLists.add(pendingAppointmentList);
-                            appointmentArrayLists.add(pendingAppointmentList);
-                            appointmentArrayLists.add(pendingAppointmentList);
-                            appointmentArrayLists.add(pendingAppointmentList);
-                            appointmentArrayLists.add(pendingAppointmentList);
-                            appointmentArrayLists.add(pendingAppointmentList);
-                            appointmentArrayLists.add(pendingAppointmentList);
-                            appointmentArrayLists.add(pendingAppointmentList);
                             PendingListAdapter pendingListAdapter=new PendingListAdapter(getContext(), appointmentArrayLists);
                             recyclerView.setAdapter(pendingListAdapter);
 

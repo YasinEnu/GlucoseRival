@@ -236,12 +236,17 @@ public class DoctorSearchActivity extends AppCompatActivity {
             }
             final TextView doctorName = row.findViewById(R.id.doctorNameTV);
             final TextView specialist = row.findViewById(R.id.doctorSpecialistTV);
+            final TextView medical = row.findViewById(R.id.hospitalNameTV);
             final Button applyButton = row.findViewById(R.id.applyBtn);
             final DoctorInfo doctorsDetails = doctorInfos.get(position);
 
             doctorName.setText(doctorsDetails.getName());
-            specialist.setText(doctorsDetails.getPresentHospital());
-
+            if (doctorsDetails.getEduQua()!=null){
+                specialist.setText(doctorsDetails.getEduQua());
+            }
+            if (doctorsDetails.getPresentHospital()!=null){
+                medical.setText(doctorsDetails.getPresentHospital());
+            }
             applyButton.setTag(position);
             row.setTag(doctorsDetails.getDoctorId());
             final View finalConvertView = row;

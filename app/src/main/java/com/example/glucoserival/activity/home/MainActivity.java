@@ -17,16 +17,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.glucoserival.R;
+import com.example.glucoserival.activity.AddSuggestionActivity;
+import com.example.glucoserival.activity.AppointmentListActivity;
 import com.example.glucoserival.activity.DoctorSearchActivity;
 import com.example.glucoserival.activity.UpdateProfile;
 import com.example.glucoserival.activity.login.LoginActivity;
 import com.example.glucoserival.helper.AppData;
 import com.example.glucoserival.helper.SessionManager;
-import com.example.glucoserival.model.PatientDashboard;
 import com.example.glucoserival.network.ConnApi;
 import com.example.glucoserival.network.MyNetwork;
 import com.google.gson.JsonObject;
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 //            userTypeIV.setImageResource(R.drawable.girl);
 //            nextAppointMent=findViewById(R.id.nextAppointmentDateTV);
 //            emailTV.setText(appData.getUserEmail());
-            replaceFragment(new PatientFragment());
+            replaceFragment(new PatientNewFragment());
         }else {
 //            userName.setText("Welcome Doctor");
 //            userTypeIV.setImageResource(R.drawable.doctor);
@@ -213,7 +213,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
 
-        getMenuInflater().inflate(R.menu.dashboard, menu);
+        if (appData.getUserType().equalsIgnoreCase("P")){
+            getMenuInflater().inflate(R.menu.patient_dashboard, menu);
+        }else {
+            getMenuInflater().inflate(R.menu.doctor_dashboard, menu);
+        }
         return true;
     }
 
@@ -231,6 +235,14 @@ public class MainActivity extends AppCompatActivity {
         }
         if (id == R.id.action_edit_profile) {
             startActivity(new Intent(MainActivity.this, UpdateProfile.class));
+            return true;
+        }
+        if (id == R.id.action_appointment_list) {
+            startActivity(new Intent(MainActivity.this, AppointmentListActivity.class));
+            return true;
+        }
+        if (id == R.id.action_add_suggestion) {
+            startActivity(new Intent(MainActivity.this, AddSuggestionActivity.class));
             return true;
         }
         if (id == R.id.action_logout) {

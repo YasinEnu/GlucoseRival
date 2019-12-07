@@ -20,6 +20,8 @@ public class PatientDashboard implements Serializable {
     private DashboardData dashboardData;
     @SerializedName("next_appointment_date")
     private String nextAppointmentDate;
+    @SerializedName("last_glucose_level")
+    private String last_glucose_level;
     @SerializedName("pending_appointment")
     private List<PendingAppointment> pendingAppointment;
     @Expose
@@ -91,6 +93,14 @@ public class PatientDashboard implements Serializable {
 
     public void setUserInfo(UserInfo userInfo) {
         this.userInfo = userInfo;
+    }
+
+    public String getLast_glucose_level() {
+        return last_glucose_level;
+    }
+
+    public void setLast_glucose_level(String last_glucose_level) {
+        this.last_glucose_level = last_glucose_level;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.glucoserival.activity.home;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
@@ -101,10 +102,10 @@ public class PatientFragment extends Fragment {
                             appData.setUserDOB(patientDashboard.getUserInfo().getDateOfBirth());
                             acceptedListFragment=AcceptedListFragment.newInstance(patientDashboard);
                             completeListFragment=CompleteListFragment.newInstance(patientDashboard);
-                            pendingListFragment=PendingListFragment.newInstance(patientDashboard);
+//                            pendingListFragment=PendingListFragment.newInstance(patientDashboard);
                             adapter.addFragment(acceptedListFragment, "Accept");
                             adapter.addFragment(completeListFragment, "Complete");
-                            adapter.addFragment(pendingListFragment, "Pending");
+//                            adapter.addFragment(pendingListFragment, "Pending");
                             viewPager.setAdapter(adapter);
                             tabLayout.setupWithViewPager(viewPager);
                         } else {
@@ -159,5 +160,7 @@ public class PatientFragment extends Fragment {
             return mFragmentList.size();
         }
     }
+
+
 
 }

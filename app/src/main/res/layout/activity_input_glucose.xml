@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    tools:context=".activity.InputGlucoseActivity">
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangular_shape_button"
+        android:layout_marginTop="5dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/dateTV"
+            android:hint="Date"
+            android:drawableRight="@android:drawable/ic_menu_my_calendar"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
+
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangular_shape_button"
+        android:layout_marginTop="5dp">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/glucoseValueET"
+            android:hint="Glucose level mmol/l"
+            android:paddingLeft="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/white"
+        android:text="Submit"
+        android:textAllCaps="false" />
+
+
+</LinearLayout>

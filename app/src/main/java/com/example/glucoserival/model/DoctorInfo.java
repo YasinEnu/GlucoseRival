@@ -23,7 +23,7 @@ public class DoctorInfo {
     @SerializedName("doctor_id")
     private String mDoctorId;
     @SerializedName("edu_qua")
-    private Object mEduQua;
+    private String mEduQua;
     @SerializedName("email")
     private String mEmail;
     @SerializedName("id")
@@ -109,11 +109,11 @@ public class DoctorInfo {
         mDoctorId = doctorId;
     }
 
-    public Object getEduQua() {
+    public String getEduQua() {
         return mEduQua;
     }
 
-    public void setEduQua(Object eduQua) {
+    public void setEduQua(String eduQua) {
         mEduQua = eduQua;
     }
 

@@ -12,6 +12,7 @@ public class DoctorDashboardData {
     private DashboardData dashboardData;
     @SerializedName("pending_appointment_list")
     private List<PendingAppointmentList> pendingAppointmentList;
+
     @Expose
     private String status;
     @SerializedName("todays_appointment_list")
@@ -69,5 +70,4 @@ public class DoctorDashboardData {
     public void setTomorrowsAppointmentList(List<Object> tomorrowsAppointmentList) {
         this.tomorrowsAppointmentList = tomorrowsAppointmentList;
     }
-
 }

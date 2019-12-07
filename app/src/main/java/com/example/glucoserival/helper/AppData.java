@@ -24,6 +24,7 @@ public class AppData {
     private static final String KEY_TOTAL_PAID = "TotalPay";
     private static final String KEY_TOTAL_DUE = "TotalDue";
     private static final String KEY_PROFILE_IMAGE = "profileImage";
+    private static final String KEY_PRESCRIPTION_IMAGE = "prescriptionImage";
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
@@ -166,6 +167,17 @@ public class AppData {
         editor.putString(KEY_PROFILE_IMAGE, uriString);
         editor.commit();
         Log.d(TAG, "Profile_Image :" + uriString);
+    }
+
+    public String getPescriptionImage() {
+        return pref.getString(KEY_PRESCRIPTION_IMAGE, "null");
+    }
+
+    public void setPescriptionImage(String uriString) {
+
+        editor.putString(KEY_PRESCRIPTION_IMAGE, uriString);
+        editor.commit();
+        Log.d(TAG, "PRESCRIPTION_Image :" + uriString);
     }
 
 

@@ -47,7 +47,13 @@ public class CompleteListFragment extends Fragment {
             public void onItemViewSet(UniversalRecyclerViewAdapter.UniversalViewHolder universalViewHolder, Object itemData, int position) {
                 ((TextView)universalViewHolder.itemView.findViewById(R.id.doctorNameTV)).setText(patientDashboard.getCompletedAppointment().get(position).getDoctorName());
                 ((TextView)universalViewHolder.itemView.findViewById(R.id.dateTV)).setText(patientDashboard.getAcceptedAppointment().get(position).getDateTime());
-                ((TextView)universalViewHolder.itemView.findViewById(R.id.statusTV)).setText("Complete");
+                ((TextView)universalViewHolder.itemView.findViewById(R.id.statusTV)).setText("Add Medicine");
+                ((TextView)universalViewHolder.itemView.findViewById(R.id.statusTV)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
             }
         }));
         if (patientDashboard.getCompletedAppointment().size()<1){
